@@ -12,7 +12,7 @@
     "dev":"concurrently \"npm start\" \"npm run client\" "
   },
   "keywords": [],
-  "author": "Abhishek Wani",
+  "author": "Aniket Wani",
   "license": "MIT",
   "dependencies": {
     "@ant-design/colors": "^7.0.0",
