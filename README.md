@@ -125,15 +125,25 @@ All controller functions expect an `Authorization: Bearer <token>` header to ide
 
 ## Folder Structure
 
-```
+```plaintext
 expense-management-app/
 ├── client/               # React frontend
-│   ├── public/
+│   ├── build/            # Production build output
+│   ├── node_modules/
+│   ├── public/           # Static assets
 │   └── src/
-│       ├── components/   # Reusable components (Navbar, Chart, TransactionForm)
-│       ├── pages/        # Pages (Login, Dashboard)
-│       ├── services/     # API service functions
-│       └── App.js
+│       ├── components/
+│       │   └── Layouts/  # Layout components (Analytics, Spinner)
+│       ├── images/       # Local image assets (e.g., loginimage.png)
+│       ├── pages/
+│       │   ├── HomePage.js
+│       │   ├── Login.js
+│       │   ├── Register.js
+│       ├── services/     # API service functions (auth, transactions)
+│       ├── App.js
+│       ├── index.js
+│       ├── App.css
+│       └── index.css
 ├── server/               # Express backend
 │   ├── config/
 │   │   └── connectDb.js  # MongoDB connection
