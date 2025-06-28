@@ -2,22 +2,23 @@
 
 ## Table of Contents
 
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation & Setup](#installation--setup)
-  - [1. Clone the Repository](#1-clone-the-repository)
-  - [2. Server Setup](#2-server-setup)
-  - [3. Client Setup](#3-client-setup)
-- [Environment Variables](#environment-variables)
-- [Running the Application](#running-the-application)
-- [API Endpoints](#api-endpoints)
-- [Folder Structure](#folder-structure)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
+* [Project Overview](#project-overview)
+* [Features](#features)
+* [Tech Stack](#tech-stack)
+* [Prerequisites](#prerequisites)
+* [Installation & Setup](#installation--setup)
+
+  * [1. Clone the Repository](#1-clone-the-repository)
+  * [2. Server Setup](#2-server-setup)
+  * [3. Client Setup](#3-client-setup)
+* [Environment Variables](#environment-variables)
+* [Running the Application](#running-the-application)
+* [API Endpoints](#api-endpoints)
+* [Folder Structure](#folder-structure)
+* [Usage](#usage)
+* [Screenshots](#screenshots)
+* [Contributing](#contributing)
+* [License](#license)
 
 ## Project Overview
 
@@ -25,26 +26,26 @@ This Expense Management System is a full-stack web application built with the ME
 
 ## Features
 
-- User registration and login with JWT authentication
-- Add, edit, and delete income or expense transactions
-- View transaction list in tabular form
-- Dynamic pie chart to visualize category-wise distribution
-- Dynamic bar chart to visualize month-wise totals
-- Protected routes: only authenticated users can manage data
+* User registration and login with JWT authentication
+* Add, edit, and delete income or expense transactions
+* View transaction list in tabular form
+* Dynamic pie chart to visualize category-wise distribution
+* Dynamic bar chart to visualize month-wise totals
+* Protected routes: only authenticated users can manage data
 
 ## Tech Stack
 
-- **Frontend:** React, React Router, Chart.js (or Recharts)
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB (Mongoose ODM)
-- **Authentication:** JSON Web Tokens (JWT)
-- **Styling:** CSS / Bootstrap / Tailwind (choose your preference)
+* **Frontend:** React, React Router, Chart.js (or Recharts)
+* **Backend:** Node.js, Express.js
+* **Database:** MongoDB (Mongoose ODM)
+* **Authentication:** JSON Web Tokens (JWT)
+* **Styling:** CSS / Bootstrap / Tailwind (choose your preference)
 
 ## Prerequisites
 
-- Node.js (v14+)
-- npm or yarn
-- MongoDB database (local or cloud - e.g. MongoDB Atlas)
+* Node.js (v14+)
+* npm or yarn
+* MongoDB database (local or cloud - e.g. MongoDB Atlas)
 
 ## Installation & Setup
 
@@ -104,27 +105,23 @@ npm start
 
 The frontend will run on `http://localhost:3000` and proxy API requests to the server.
 
-## API Endpoints
+## Controller Functions
 
-*All endpoints prefixed with* `/api/v1`
+Rather than exposing raw HTTP methods, the backend organizes logic into controller functions. Import and invoke these in your route handlers as needed:
 
-### Auth
+### Auth Controller (`controllers/userController.js`)
 
-| Method | Endpoint         | Description                |
-| ------ | ---------------- | -------------------------- |
-| POST   | `/auth/register` | Register a new user        |
-| POST   | `/auth/login`    | Authenticate and get a JWT |
+* **registerUser(req, res):** Validates new user data, creates a user record, and issues a JWT.
+* **loginUser(req, res):** Verifies credentials and returns a JWT on success.
 
-### Transactions
+### Transaction Controller (`controllers/transactionCtrl.js`)
 
-| Method | Endpoint            | Description                       |
-| ------ | ------------------- | --------------------------------- |
-| GET    | `/transactions`     | Get all transactions for the user |
-| POST   | `/transactions`     | Add a new transaction             |
-| PUT    | `/transactions/:id` | Update a transaction by ID        |
-| DELETE | `/transactions/:id` | Delete a transaction by ID        |
+* **addTransaction(req, res):** Adds a new income or expense entry for the authenticated user.
+* **getTransactions(req, res):** Retrieves all transactions associated with the user.
+* **editTransaction(req, res):** Updates an existing transaction by its ID.
+* **deleteTransaction(req, res):** Removes a transaction by its ID.
 
-All transaction routes require a valid `Authorization: Bearer <token>` header.
+All controller functions expect an `Authorization: Bearer <token>` header to identify the user, except `registerUser` and `loginUser` which are public.
 
 ## Folder Structure
 
@@ -169,4 +166,3 @@ Contributions are welcome! Please fork the repository and open a pull request wi
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
